@@ -1,13 +1,13 @@
 
 
 Config = {
-    ADU1 = {},
-    ADU2 = {
-        -- config options for ADU2
+    ic71 = {},
+    ic72 = {
+        -- config options for 2
         ShiftWarn = 80 -- % of RPM (of Limiter) when RPM Bar should turn Red
     },
-    ADU3 = {
-        -- config options for ADU3
+    ic73 = {
+        -- config options for 3
         ShiftWarn = 85 -- % of RPM (of Limiter) when RPM Bar should turn Red
     }
 }
@@ -17,7 +17,7 @@ SmoothedAccel = {x = 0, z = 0} -- global default value definition for x and z ax
 SmoothedRPM = SmoothedRPM or 0
 SmoothedBoost = SmoothedBoost or 0
 
-function modeA(dt) -- first screem of the ADU, part of the switching function at the very bottom
+function modeA(dt) -- first screem of the iC-7, part of the switching function at the very bottom
     display.image {
         image = "assets/hero.dds",
         pos = vec2(0, 442), -- coordinates of top left corner
@@ -495,7 +495,7 @@ function modeC(dt)
     local amountOfSquares = math.ceil(rpmPercentage/6.25) -- only render the squares the user will actually see, for performance.
 
     local color = rgbm(1, 0.8, 0, 1) -- normal colour of the displayed rectangle
-    if Config.ADU2.ShiftWarn < (car.rpm / car.rpmLimiter * 100) then -- if rpms exceed Configured Value colour switches
+    if Config.2.ShiftWarn < (car.rpm / car.rpmLimiter * 100) then -- if rpms exceed Configured Value colour switches
         color = rgbm(255, 0, 0, 255)
     end
     local rpmPos = vec2(610, 1216)
